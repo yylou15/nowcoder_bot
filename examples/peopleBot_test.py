@@ -29,14 +29,17 @@ if __name__ == '__main__':
   bot.login()
   path = './resumes/' + time.strftime('%Y-%m-%d',time.localtime(time.time()))
   logger.info(path)
-  files = os.listdir(path)
-  logger.info(len(files))
-  for file in files:
-    if not os.path.isdir(file):
-      time.sleep(3)
-      for key in jobs:
-        if key in file:
-          idx = 0
-          if '实习' in file or '应届生' in file:
-            idx = -1
-          bot.process_resume(path + '/' + file, jobs[key][idx])
+  if os.path.exists(path):
+    files = os.listdir(path)
+    logger.info(len(files))
+    for file in files:
+      if not os.path.isdir(file):
+        time.sleep(3)
+        for key in jobs:
+          if key in file:
+            idx = 0
+            if '实习' in file or '应届生' in file:
+              idx = -1
+            bot.process_resume(path + '/' + file, jobs[key][idx])
+  else:
+    logger.info('not found path: %s' % (path))

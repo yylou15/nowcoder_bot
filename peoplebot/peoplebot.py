@@ -34,7 +34,7 @@ class PeopleBot(threading.Thread):
       logger = logging.getLogger()
     self.logger = logger
     self.session.cookies = MozillaCookieJar('.cookiejar')
-    if os.path.exists('cookiejar'):
+    if os.path.exists('.cookiejar'):
       # Load saved cookies from the file and use them in a request
       self.logger.info('loading saved cookies')
       self.session.cookies.load(ignore_discard=True)
