@@ -7,6 +7,7 @@
 > 为什么不能用document.cookie? 因为有些cookie加了HTTPonly，JS是拿不到的
 
 - 运行测试
+如果看到 login success 字样，就是登陆成功了
 ```bash
 ./start_people.sh
 ```
@@ -20,7 +21,7 @@
 - 先参照前面准备好people session
 - 启动bossbot
 ```bash
-./start_bot.sh
+./start_boss.sh
 ```
 - 使用boss扫码(只有第一次登录需要，后续都会自动登录)
 
