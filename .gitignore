@@ -1,6 +1,8 @@
 examples/__pycache__
 **.pyc
 .cookiejar
+.session
 resumes/**
 red_packet/messages
 people_cookie
+maimainbot/.maimai_cookie
