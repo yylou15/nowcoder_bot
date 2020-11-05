@@ -19,8 +19,8 @@ jobs = {
   'HR': ['6843364252502837512', '6843364252502837512'],
   '服务端': ['6860361408367315214', '6704443756197710094'],
   'Android': ['6704530394017958148', '6704433460473235726'],
-  'IOS': ['6704579151484946692', '6704579127824877831'],
   '前端': ['6704579151308785928', '6704552316768356615'],
+  'iOS': ['6704579151484946692', '6704579127824877831'],
   'Rust': ['6704534498622572807', '6704463170729150724'],
   'C工程师': ['6704534498622572807', '6704463170729150724'],
   '数据': ['6721890202450659592', '6750951560294959374'],
@@ -32,7 +32,7 @@ jobs = {
 positions = {
 	"前端": ["前端开发", "web前端", "JavaScript", "Flash开发", "HTML5", "移动web前端", "Flash开发", "JavaScript", "U3D", "COCOS2DX", "Node.js"],
 	"服务端": ["全栈工程师", "GIS工程师", "后端开发", "Java", "C++", "PHP", "C", "C#", ".NET", "Hadoop", "Python", "Delphi", "VB", "Perl", "Ruby", "Golang", "Erlang", "语音/视频/图形开发", "数据采集", "架构师"],
-	"IOS": ["UE4", "移动开发","iOS"],
+	"iOS": ["iOS"],
     "Android": ["Android"],
 	"数据": ["数据", "ETL工程师", "数据仓库", "数据开发", "数据挖掘", "数据分析师", "数据架构师"],
     "AI": ["智能驾驶系统工程师", "反欺诈/风控算法", "人工智能", "数据挖掘", "搜索算法", "自然语言处理", "推荐算法", "算法工程师", "机器学习", "深度学习", "语音识别", "图像识别", "算法研究员"],
@@ -80,7 +80,7 @@ def map_job(filename):
         finnal_jobs = first_jobs
 
     return finnal_jobs[job_idx]
-    
+
 def geeks_filter(geek):
     '''
     筛选geeks
@@ -111,11 +111,11 @@ def geeks_filter(geek):
         positionCategory = positionMap.get(expectPositionName, None)
         if not positionCategory:
             print('非技术同学: ', expectPositionName)
-            return False          
+            return False
         if positionCategory in beta_positions:
             print('求职职位不匹配: ', positionCategory)
             return False
-    
+
     edus = geek.get('edus', [])
     target_school = False
     for edu in edus:
@@ -269,7 +269,7 @@ class Bot(BossBot):
         print('招呼信息, 内容： ', securityId, data)
         random_sleep(4, 10)
         self.auto_process(uid, securityId)
-        
+
     def on_request_resume_message(self, data, boss_id, mid):
         '''
         请求发送简历 消息回调函数
@@ -331,10 +331,10 @@ def greeting(bot, max_page = 1):
         if not can_greeting_today:
             print('终止打招呼了')
             break;
-        
+
         for job_id in bot.job_ids:
             geeks = bot.get_geeks(job_id, page)
-            
+
             print("过滤前牛人:", len(geeks))
 
             targets = list(filter(lambda geek: (
@@ -359,7 +359,7 @@ def timed_greeting(interval, bot, max_page = 1, head = True):
         threading.Timer(1, greeting, (bot, max_page )).start()
     else:
         greeting(bot)
-        
+
     threading.Timer(interval, timed_greeting, (interval, bot, max_page, False)).start()
 
 def process_last_feeds(bot, max = 50):
@@ -379,7 +379,7 @@ if __name__ == '__main__':
     [uid, user_id, token, client_id] = [None, None, None, None]
     if sessions and len(sessions) >= 4:
         [uid, user_id, token, client_id] = sessions
-    
+
     if uid and user_id and token:
         bot.login(uid, user_id, token, client_id)
     else:
